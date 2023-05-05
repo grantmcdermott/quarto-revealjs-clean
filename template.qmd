@@ -1,0 +1,281 @@
+---
+title: Quarto revealjs clean
+subtitle: A clean and elegant presentation theme
+format:
+  clean-revealjs: default
+author:
+  - name: Grant McDermott
+    orcid: 0000-0001-7883-8573
+    email: gmcd@amazon.com
+    affiliations: Amazon.com
+  - name: Kyle Butts
+    orcid: 0000-0001-7883-8573
+    email: kyle.butts@colorado.edu
+    affiliations: UC Boulder
+date: last-modified
+bibliography: refs.bib
+---
+
+## Example slide
+
+### This is a subtitle
+
+Before we dive a bit deeper, here is a simple example of the theme in action. 
+
+- No pictures or anything fancy. Just text for the moment.
+
+Next, we'll take a brief tour of some theme components.
+
+- We'll use the same basic
+structure as the
+[original LaTeX slides](https://raw.githack.com/kylebutts/templates/master/latex-slides/auxiliary/slides.pdf).
+- Note that the [_full suite_](https://quarto.org/docs/presentations/revealjs/)
+of Reveal.js features are available for this Quarto implementation,
+even if we don't cover everything here.
+
+# Components {background-color="#40666e"}
+
+## Components
+
+### Ordered and Unordered Lists
+
+Here we have an unordered list.
+
+- first item
+    - sub-item
+- second item
+
+And next we have an ordered one.
+
+1. first item
+    i) sub-item
+2. second item
+
+## Components
+
+### Alerts & Cross-refs {#sec-crossref}
+
+Use the `.alert` class to emphasize.
+
+- This allows you to [draw attention]{.alert} to specific words/phrases.
+
+To cross-reference, you have several options.
+
+- Quarto's native cross-ref syntax, e.g., "See @sec-appendix."
+- Hyperlink manually, e.g. "See the [Appendix](#sec-appendix)."
+- Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
+
+
+## Components
+
+### Citations
+
+[Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+
+[Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+
+## Components
+
+### Blocks
+
+Quarto provides
+[dedicated environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
+for theorems, lemmas, and so forth. 
+
+But in presentation format, it's arguably more effective just to use a
+[Callout Block](https://quarto.org/docs/authoring/callouts.html).
+
+:::{.callout-note}
+## Regression Specification
+
+The main specification is as follows:
+
+$$
+y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
+$$
+:::
+
+<!-- ::: {#thm-line}
+
+## Regression Specification
+
+The main specification is as follows:
+
+$$
+y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
+$$
+::: -->
+
+<!-- # Transition slide {background-color="lighten('#107895', 50%)"} -->
+
+## Components
+
+### Multicolumn I: Text only
+
+:::: {.columns}
+
+::: {.column width="50%"}
+Column 1
+
+Here is a long sentence that will wrap onto the next line as it hits the column width, and continuing on this way until it stops.
+:::
+
+::: {.column width="50%"}
+Column 2
+
+Some other text in another column.
+
+A second paragraph.
+:::
+
+::::
+
+Multicolumn support is very flexible and we can continue with a single full
+span column in the same slide.
+
+## Components
+
+### Multicolumn II: Text and figures
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/kanagawa.jpg)
+:::
+
+::: {.column width="50%"}
+
+- A point about the figure that is potentially important.
+- Another point about the figure that is also potentially important.
+:::
+
+:::
+
+## Components
+
+### Multicolumn III: Code and output
+
+```{r}
+#| echo: true
+#| label: fig-pairs
+#| fig-cap: "Pairwise scatterplot" 
+#| fig-asp: 1
+#| output-location: column
+
+palette("Classic Tableau")
+
+par(
+  family = "HersheySans",
+  las = 1, pch = 19, cex = 1.5
+)
+
+pairs(
+  iris[,1:4],
+  col=iris$Species
+)
+```
+
+# Tables {background-color="#40666e"}
+
+## Regression table
+
+### Result on next slide
+
+```{r}
+#| echo: true
+#| output-location: slide
+
+library(modelsummary)
+options(modelsummary_factory_default = "gt")
+
+mod1 = lm(rating ~ ., data = attitude)
+mod2 = update(mod1, . ~ . - raises - critical)
+
+dict = c(
+  "complaints" = "Handling of Complaints",
+  "privileges" = "No Special Priviledges",
+  "learning"   = "Opportunity to Learn",
+  "raises"     = "Performance-Based Raises",
+  "critical"   = "Too Critical",
+  "advance"    = "Advancement"
+)
+
+msummary(
+  list(mod1, mod2),
+  coef_map = dict,
+  stars = TRUE,
+  gof_omit = "Adj|IC|F|Log|RMSE"
+  ) |>
+  gt::tab_spanner(
+    label = "Dependent variable: Overall Rating",
+    columns =2:3
+  )
+```
+
+<!-- ## Regression table -->
+
+```{r}
+#| eval: false
+#| output: asis
+
+library(fixest)
+
+
+dict = c("(Intercept)" = "Constant", 
+         Petal.Length = "Petal length", Petal.Width = "Petal width",
+         Sepal.Length = "Sepal length", Sepal.Width = "Sepal width",
+         note1 = dsb("*Notes*: This is a note that illustrates how to access notes ",
+                     "from the dictionary."),
+         source = "*Sources*: Somewhere from the net.")
+setFixest_dict(dict)
+
+# The style of the table
+my_style = style.tex("aer", model.format = "(i)")
+
+
+nm = names(iris)
+est = feols(.[nm[1]] ~ .[nm[2:4]], iris, fsplit = ~Species)
+
+# mod = feols(mpg ~ wt, mtcars)
+# etable(mod, markdown = TRUE)
+etable(est, arraystretch = 1.5,
+       highlight = .("Sepal@1", 
+                     "cyan4, square" = "Petal.L@3-4",
+                     "thick5, sep8, darkgreen!90, se" = "Petal.W"),
+        markdown = TRUE)
+```
+
+# Figures {background-color="#40666e"}
+
+## {background-image="img/kanagawa.jpg" background-size="100%"}
+
+## Figure
+
+### Full-size Figures
+
+You can use the [background-image]{.alert} container environment to completely
+fill the background of a slide with an image.
+
+- Ideally, your figure is the same aspect as the screen frame 4:3 or 16:9,
+or else there will be some white space / cropping.
+- This can also matter for a regular full-frame images (next slide)
+
+## Figure
+
+![](img/kanagawa.jpg)
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix {#sec-appendix}
+
+```{r}
+#| label: tbl-attsum
+#| tbl-cap: Summary of the base R `attitude` dataset
+
+modelsummary::datasummary_skim(attitude)
+```
+
+[[Back to main]{.button}](#sec-crossref)
