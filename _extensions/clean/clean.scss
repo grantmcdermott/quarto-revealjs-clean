@@ -103,6 +103,16 @@ $selection-bg: #26351c !default;
   color: $accent2;
 }
 
+.fg {
+  color: var(--col, $jet);
+}
+
+.bg {
+  background-color: var(--col, #fff);
+  padding: 0.1em;
+  border-radius: 5px;
+  display: inline-block;
+}
 
 // lists
 
