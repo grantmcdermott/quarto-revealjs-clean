@@ -7,12 +7,11 @@ $accent2: #9a2515;
 $right-arrow: "\2192"; // Unicode character for right arrow
 
 // fonts
-$font-family-sans-serif: "Roboto", "Palatino Linotype", "Book Antiqua", Palatino,
-  FreeSerif, serif !default;
+@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+$font-family-sans-serif: "Roboto", sans-serif !default;
 $presentation-font-size-root: 36px;
 
-$presentation-heading-font: "Roboto", "Palatino Linotype", "Book Antiqua", Palatino,
-  FreeSerif, serif !default;
+$presentation-heading-font: "Roboto", sans-serif !default;
 $presentation-heading-color: $jet !default;
 $presentation-heading-font-weight: 200;
 //$presentation-heading-line-height: 2;
@@ -80,18 +79,6 @@ $selection-bg: #26351c !default;
 }
 
 
-//$presentation-title-slide-text-align: left;
-/*
-.reveal .title {
-  font-weight: 200;
-}
-*/
-/* custom-theme.css */
-
-// .reveal section h1 {
-//   font-weight: 350; /* Replace with your desired font size (e.g., 48px) */
-// }
-
 .reveal h2 {
   font-weight: 350;
   font-size: 1.4em;
@@ -143,7 +130,6 @@ $selection-bg: #26351c !default;
   }
 }
 
-
 // Ordered lists
 
 .reveal ol {
@@ -155,8 +141,8 @@ $selection-bg: #26351c !default;
   }
 }
 
-
 // Move "hamburger" menu button to top right
+
 .reveal .slide-menu-button {
   position: fixed;
   top: 6px;
@@ -164,15 +150,16 @@ $selection-bg: #26351c !default;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  pointer-events: none; /* Add this line */
+  pointer-events: none;
 }
 
 .reveal .slide-menu-button > * {
-  pointer-events: auto; /* Add this line */
+  pointer-events: auto;
 }
 
 
 // Same for chalkboard buttons (with an offset)
+
 .reveal .slide-chalkboard-buttons {
   position: fixed;
   top: 12px;
@@ -180,13 +167,14 @@ $selection-bg: #26351c !default;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
-  pointer-events: none; /* Add this line */
+  pointer-events: none;
 }
 
 .reveal .slide-chalkboard-buttons > * {
-  pointer-events: auto; /* Add this line */
+  pointer-events: auto;
 }
 
+// Beamer-style button link environment
 
 .button {
   display: inline-block;
@@ -216,6 +204,10 @@ $selection-bg: #26351c !default;
   content: "▶";
   margin-right: 5px;
 }
+
+// Special catch for etable environment to ensure these table images
+// don't overflow the slide.
+// See: https://lrberge.github.io/fixest/articles/etable_new_features.html
 
 .etable {
   width: 100%;

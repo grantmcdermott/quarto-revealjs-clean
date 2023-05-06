@@ -1,6 +1,6 @@
 ---
 title: Quarto revealjs clean
-subtitle: A clean and elegant presentation theme
+subtitle: A minimal and elegant presentation theme
 format:
   clean-revealjs: default
 author:
@@ -9,7 +9,7 @@ author:
     email: gmcd@amazon.com
     affiliations: Amazon.com
   - name: Kyle Butts
-    orcid: 0000-0001-7883-8573
+    orcid: 0000-0002-9048-8059
     email: kyle.butts@colorado.edu
     affiliations: UC Boulder
 date: last-modified
@@ -32,6 +32,28 @@ structure as the
 - Note that the [_full suite_](https://quarto.org/docs/presentations/revealjs/)
 of Reveal.js features are available for this Quarto implementation,
 even if we don't cover everything here.
+
+
+## Before you proceed
+
+### A quick note on the coding examples
+
+:::{.callout-note}
+## R libraries
+
+We will use several R coding examples in this template to demonstrate features
+of the theme.
+
+Please note that the theme does not require R at all, or any other programming
+language for that matter. Like Quarto itself, the theme is language agnostic.
+
+But you will need the following libraries if you'd like to knit the template
+"as-is":
+
+```{.r}
+install.packages(c("modelsummary", "gt", "fixest", "pdftools", "tinytex"))
+```
+:::
 
 # Components {background-color="#40666e"}
 
@@ -70,9 +92,13 @@ To cross-reference, you have several options.
 
 ### Citations
 
-[Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+Citations follow the standard
+[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
+and be sourced from BibLatTex, BibTeX, or CLS files. For example:
 
-[Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+ - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+
+- [Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
 
 ## Components
 
@@ -95,19 +121,6 @@ y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
 $$
 :::
 
-<!-- ::: {#thm-line}
-
-## Regression Specification
-
-The main specification is as follows:
-
-$$
-y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
-$$
-::: -->
-
-<!-- # Transition slide {background-color="lighten('#107895', 50%)"} -->
-
 ## Components
 
 ### Multicolumn I: Text only
@@ -115,13 +128,13 @@ $$
 :::: {.columns}
 
 ::: {.column width="50%"}
-Column 1
+#### Column 1
 
 Here is a long sentence that will wrap onto the next line as it hits the column width, and continuing on this way until it stops.
 :::
 
 ::: {.column width="50%"}
-Column 2
+#### Column 2
 
 Some other text in another column.
 
@@ -140,7 +153,7 @@ span column in the same slide.
 :::: {.columns}
 
 ::: {.column width="50%"}
-![](img/kanagawa.jpg)
+![](images/kanagawa.jpg)
 :::
 
 ::: {.column width="50%"}
@@ -177,9 +190,41 @@ pairs(
 
 # Tables {background-color="#40666e"}
 
+## Tables
+
+### Regression example
+
+Quarto offers excellent
+[table support](https://quarto.org/docs/authoring/tables.html),
+with further customization via user libraries. Let's illustrate with a
+regression example:
+
+```{r}
+#| echo: true
+
+library(fixest)
+
+mods = feols(
+  rating ~ complaints + privileges + learning + csw0(raises + critical) + advance,
+  data = attitude
+)
+
+dict = c("rating"     = "Overall Rating",
+         "complaints" = "Handling of Complaints",
+         "privileges" = "No Special Priviledges",
+         "learning"   = "Opportunity to Learn",
+         "raises"     = "Performance-Based Raises",
+         "critical"   = "Too Critical",
+         "advance"    = "Advancement")
+```
+
 ## Regression table
 
-### Result on next slide
+### modelsummary
+
+If you use `modelsummary` with this Quarto theme, we advise setting the `gt`
+backend for a cleaner aesthetic. More details
+[here](https://vincentarelbundock.github.io/modelsummary/articles/appearance.html).
 
 ```{r}
 #| echo: true
@@ -188,81 +233,91 @@ pairs(
 library(modelsummary)
 options(modelsummary_factory_default = "gt")
 
-mod1 = lm(rating ~ ., data = attitude)
-mod2 = update(mod1, . ~ . - raises - critical)
-
-dict = c(
-  "complaints" = "Handling of Complaints",
-  "privileges" = "No Special Priviledges",
-  "learning"   = "Opportunity to Learn",
-  "raises"     = "Performance-Based Raises",
-  "critical"   = "Too Critical",
-  "advance"    = "Advancement"
-)
-
-msummary(
-  list(mod1, mod2),
-  coef_map = dict,
-  stars = TRUE,
+modelsummary(
+  setNames(mods, c("(1)", "(2)")),
+  coef_map = dict, stars = TRUE,
   gof_omit = "Adj|IC|F|Log|RMSE"
   ) |>
   gt::tab_spanner(
     label = "Dependent variable: Overall Rating",
-    columns =2:3
+    columns = 2:3
   )
 ```
 
-<!-- ## Regression table -->
+## Regression table
 
-```{r}
-#| eval: false
+### etable
+
+`fixest`'s own native tabling functions were designed for LaTeX output. But we
+can use the `markdown = TRUE` option to make them work with this theme too. More
+details
+[here](https://lrberge.github.io/fixest/articles/etable_new_features.html).
+
+ - You'll need to set the R chunk option `output: asis`. 
+ - You'll also need the `tinytex` & `pdftools` packages.
+
+````
+```{{r}}
 #| output: asis
 
-library(fixest)
-
-
-dict = c("(Intercept)" = "Constant", 
-         Petal.Length = "Petal length", Petal.Width = "Petal width",
-         Sepal.Length = "Sepal length", Sepal.Width = "Sepal width",
-         note1 = dsb("*Notes*: This is a note that illustrates how to access notes ",
-                     "from the dictionary."),
-         source = "*Sources*: Somewhere from the net.")
+setFixest_etable(markdown = TRUE)
 setFixest_dict(dict)
 
-# The style of the table
-my_style = style.tex("aer", model.format = "(i)")
+etable(mods)
+```
+````
 
+## Regression table
 
-nm = names(iris)
-est = feols(.[nm[1]] ~ .[nm[2:4]], iris, fsplit = ~Species)
+### etable (cont.)
 
-# mod = feols(mpg ~ wt, mtcars)
-# etable(mod, markdown = TRUE)
-etable(est, arraystretch = 1.5,
-       highlight = .("Sepal@1", 
-                     "cyan4, square" = "Petal.L@3-4",
-                     "thick5, sep8, darkgreen!90, se" = "Petal.W"),
-        markdown = TRUE)
+```{r}
+#| output: asis
+
+setFixest_etable(markdown = TRUE)
+setFixest_dict(dict)
+
+etable(mods)
 ```
 
 # Figures {background-color="#40666e"}
 
-## {background-image="img/kanagawa.jpg" background-size="100%"}
+## Figure
+
+![](images/kanagawa.jpg)
 
 ## Figure
 
 ### Full-size Figures
 
-You can use the [background-image]{.alert} container environment to completely
-fill the background of a slide with an image.
+You can use the `{.background-image}` container environment to completely fill
+the slide background with an image.
 
-- Ideally, your figure is the same aspect as the screen frame 4:3 or 16:9,
-or else there will be some white space / cropping.
-- This can also matter for a regular full-frame images (next slide)
+Ideally, your figure will be the same aspect ratio as the screen that you're presenting on.
 
-## Figure
+- This can be a bit tricky because of the dynamic nature of Reveal.js / HTML. But its probably something close to 16:9.
+- Aspect ratio can also matter for a regular full-frame images (previous slide).
 
-![](img/kanagawa.jpg)
+## {background-image="images/kanagawa169.jpg" background-size="100%"}
+
+# Summary {background-color="#40666e"}
+
+## Summary
+
+### A minimal and elegant presentation theme
+
+
+The Quarto Revealjs clean theme is intended as a minimal and elegant presention theme.
+
+We have highlighted some theme-specific components. But all of the regular Revealjs functionality is supported.
+
+- E.g., interactive elements like [chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard), [animations](https://quarto.org/docs/presentations/revealjs/advanced.html#auto-animate), etc.
+
+Try for yourself:
+
+```{.bash}
+quarto install extension grantmcdermott/quarto-revealjs-clean
+```
 
 ## References
 

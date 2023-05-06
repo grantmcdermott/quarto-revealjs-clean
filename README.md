@@ -1,23 +1,18 @@
-# <%= title %> Format
+# Quarto clean theme
+
+A clean and elegant presentation theme for Quarto Reveal.js, inspired by Kyle's
+[LaTex template](https://raw.githack.com/kylebutts/templates/master/latex-slides/auxiliary/slides.pdf).
+
+![](clean-title.png "title-slide") ![](clean-ex.png "example-slide")
 
 ## Installing
 
-*TODO*: Replace the `<github-organization>` with your GitHub organization.
+Use the following [Quarto CLI](https://quarto.org/) command to install the theme.
 
 ```bash
-quarto use template <github-organization>/<%= filesafename %>
+quarto install extension grantmcdermott/quarto-revealjs-clean
 ```
-
-This will install the extension and create an example qmd file that you can use as a starting place for your article.
-
-## Using
-
-*TODO*: Describe how to use your format.
-
-## Format Options
-
-*TODO*: If your format has options that can be set via document metadata, describe them.
 
 ## Example
 
-Here is the source code for a minimal sample document: [example.qmd](example.qmd).
+Here is the source code for a minimal sample document: [template.qmd](template.qmd).
