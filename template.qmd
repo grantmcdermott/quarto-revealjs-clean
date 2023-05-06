@@ -2,7 +2,8 @@
 title: Quarto revealjs clean
 subtitle: A minimal and elegant presentation theme
 format:
-  clean-revealjs: default
+  clean-revealjs:
+    self-contained: true
 author:
   - name: Grant McDermott
     orcid: 0000-0001-7883-8573
@@ -20,7 +21,9 @@ bibliography: refs.bib
 
 ### This is a subtitle
 
-Before we dive a bit deeper, here is a simple example of the theme in action. 
+Before we dive a bit deeper, here is a simple example of the
+[clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean)
+in action. 
 
 - No pictures or anything fancy. Just text for the moment.
 
@@ -53,6 +56,10 @@ But you will need the following libraries if you'd like to knit the template
 ```{.r}
 install.packages(c("modelsummary", "gt", "fixest", "pdftools", "tinytex"))
 ```
+
+Note that TinyTex provides access to a lightweight TeX distribution, which it
+turns out, is by far the easiest way to manage TeX integration with Quarto. More
+details [here](https://quarto.org/docs/output-formats/pdf-engine.html).
 :::
 
 # Components {background-color="#40666e"}
@@ -77,15 +84,17 @@ And next we have an ordered one.
 
 ### Alerts & Cross-refs {#sec-crossref}
 
-Use the `.alert` class to emphasize.
+To emphasize specific words or text, you can:
 
-- This allows you to [draw attention]{.alert} to specific words/phrases.
+- Use the default `.alert` class, e.g. [important note]{.alert}.
+- Use the `.fg` class for custom colour, e.g. [important note]{.fg style="--col: #e64173"}.
+- Use the `.bg` class for custom background, e.g. [important note]{.bg style="--col: #e64173"}.
 
 To cross-reference, you have several options.
 
+- Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
 - Quarto's native cross-ref syntax, e.g., "See @sec-appendix."
 - Hyperlink manually, e.g. "See the [Appendix](#sec-appendix)."
-- Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
 
 
 ## Components
@@ -94,7 +103,7 @@ To cross-reference, you have several options.
 
 Citations follow the standard
 [Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
-and be sourced from BibLatTex, BibTeX, or CLS files. For example:
+and be sourced from BibLaTex, BibTeX, or CLS files. For example:
 
  - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
 
@@ -130,7 +139,8 @@ $$
 ::: {.column width="50%"}
 #### Column 1
 
-Here is a long sentence that will wrap onto the next line as it hits the column width, and continuing on this way until it stops.
+Here is a long sentence that will wrap onto the next line as it hits the column
+width, and continuing on this way until it stops.
 :::
 
 ::: {.column width="50%"}
@@ -162,7 +172,10 @@ span column in the same slide.
 - Another point about the figure that is also potentially important.
 :::
 
-:::
+::::
+
+Note that sub- and multi-panel figures are also natively supported by Quarto.
+See [here](https://quarto.org/docs/authoring/figures.html#subfigures).
 
 ## Components
 
