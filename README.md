@@ -17,10 +17,14 @@ quarto install extension grantmcdermott/quarto-revealjs-clean
 
 Once the theme is installed, use one of the following templates for a quick start.
 
-```bash
-# bare bones template
-quarto use template grantmcdermott/quarto-revealjs-clean
+- Bare bones template
 
-# full demo template
+```bash
+quarto use template grantmcdermott/quarto-revealjs-clean
+```
+
+- Full demo template
+
+```bash
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ```
