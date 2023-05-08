@@ -10,8 +10,8 @@ Click the screenshot below to be taken to a
 
 ## Use
 
-Depending on your use-case, here are some [Quarto CLI](https://quarto.org/) to
-get you started.
+Depending on your use case, here are some [Quarto CLI](https://quarto.org/)
+commands to get started.
 
 If you would like to add the **clean** theme to an existing directory:
 
