@@ -3,11 +3,11 @@
 A minimal and elegant presentation theme for Quarto Reveal.js, inspired by Kyle's
 [LaTex template](https://raw.githack.com/kylebutts/templates/master/latex-slides/auxiliary/slides.pdf).
 
-Click the screenshot below to be taken to a [live demo](https://grantmcdermott.com/quarto-revealjs-clean/template.html).
+Click the screenshot below to be taken to a [live demo](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html).
 
-[![](clean-title.png "live demo")](https://grantmcdermott.com/quarto-revealjs-clean/template.html)
+[![](clean-title.png "live demo")](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html)
 
-## Installing
+## Use
 
 Use the following [Quarto CLI](https://quarto.org/) command to install the theme.
 
@@ -15,6 +15,12 @@ Use the following [Quarto CLI](https://quarto.org/) command to install the theme
 quarto install extension grantmcdermott/quarto-revealjs-clean
 ```
 
-## Example
+Once the theme is installed, use one of the following templates for a quick start.
 
-Here is the source code for a minimal sample document: [template.qmd](template.qmd).
+```bash
+# bare bones template
+quarto use template grantmcdermott/quarto-revealjs-clean
+
+# full demo template
+quarto use template grantmcdermott/quarto-revealjs-clean-demo
+```
