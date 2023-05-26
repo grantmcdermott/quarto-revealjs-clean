@@ -1,8 +1,7 @@
 ---
 title: A title
 subtitle: A subtitle
-format:
-  clean-revealjs: default
+format: clean-revealjs
 author:
   - name: Your Name
     orcid: 0000-0000-0000-0000
