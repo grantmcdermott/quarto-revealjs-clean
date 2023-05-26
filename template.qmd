@@ -38,7 +38,8 @@ Special classes for emphasis
 
 Cross-references
 
-- `.button` class provides a Beamer-like button, e.g. [[Summary]{.button}](#sec-summary)
+- `.button` class provides a Beamer-like button, e.g.
+[[Summary]{.button}](#sec-summary)
 
 ## Want more?
 
@@ -47,16 +48,19 @@ Cross-references
 We've deliberarely kept this template lean, to get you up and running as fast as
 possible.
 
-We provide a separate demo template, with more examples for integrating
-code, tables, figures, etc.
+We provide a separate
+[demo template](https://github.com/grantmcdermott/quarto-revealjs-clean-demo),
+with more examples for integrating code, tables, figures, etc.
 
-  - See the demo slides here.
+  - See the live demo slides
+  [here](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html).
 
 ## Summary {#sec-summary}
 
 ### A minimal and elegant presentation theme
 
-The Quarto Revealjs clean theme is intended as a minimal and elegant presention theme.
+The Quarto reveal.js clean theme aims to be a minimal and elegant presention
+theme.
 
 Install the theme.
 
