@@ -44,12 +44,12 @@ $selection-bg: #26351c !default;
     color: $body-color;
     font-size: 1.4em;
     font-weight: 350;
-    line-height: 0;
   }
 
   .subtitle {
     color: $accent;
     font-style: italic;
+    margin-top: 0em;
   }
 
   .institute,
