@@ -11,20 +11,22 @@ $right-arrow: "\2192"; // Unicode character for right arrow
 // fonts
 
 /*
-Note: The initial release of this theme used the Roboto font family, making
-  sure to first import it from Google Fonts. However, this turned out to be
-  potentially problematic in some secure corporate settings (see:
-  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). So now
-  we directly use the default Sans Serif font on the user's system instead
-  (e.g., Helvetica on a Mac). If you would still like to use Roboto per the
-  original behaviour, simply comment out the two lines below and then 
-  *un*comment the the three lines immediately below that. 
+Note: This theme uses the Roboto font family, which it imports from Google
+  Fonts to ensure consistent weighting in addition to availability. While
+  you can use a local installation of Roboto, this is generally not 
+  recommended since the weighting will likely be wrong (probably too
+  light). OTOH, importing from Google Fonts can cause some issues in
+  certain secure environments due the external CDN (see:
+  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
+  that's the case for you, simply comment out the `@import url(...)` line
+  below and it will default for the default Sans Serif font on your system
+  (e.g., Helvetica on a Mac). Circling back to the earlier point about
+  preserving consistent font weights, you may also wish to remove "Roboto"
+  from the choice set if the family is installed locally.
 */
-$font-family-sans-serif: sans-serif !default;
-$presentation-heading-font: sans-serif !default;
-// @import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
-// $font-family-sans-serif: "Roboto", sans-serif !default;
-// $presentation-heading-font: "Roboto", sans-serif !default;
+@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+$font-family-sans-serif: "Roboto", sans-serif !default;
+$presentation-heading-font: "Roboto", sans-serif !default;
 
 $presentation-heading-color: $jet !default;
 $presentation-heading-font-weight: lighter;
