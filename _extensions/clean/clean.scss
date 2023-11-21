@@ -1,21 +1,38 @@
 /*-- scss:defaults --*/
 
 // Custom colours and variables
+
 $jet: #131516;
 $accent: #107895;
 $accent2: #9a2515;
+// $accent2: #e64173;
 $right-arrow: "\2192"; // Unicode character for right arrow
 
 // fonts
+
+/*
+Note: This theme uses the Roboto font family, which it imports from Google
+  Fonts to ensure consistent weighting in addition to availability. While
+  you can use a local installation of Roboto, this is generally not 
+  recommended since the weighting will likely be wrong (probably too
+  light). OTOH, importing from Google Fonts can cause some issues in
+  certain secure environments due the external CDN (see:
+  https://github.com/grantmcdermott/quarto-revealjs-clean/issues/7). If
+  that's the case for you, simply comment out the `@import url(...)` line
+  below and it will default for the default Sans Serif font on your system
+  (e.g., Helvetica on a Mac). Circling back to the earlier point about
+  preserving consistent font weights, you may also wish to remove "Roboto"
+  from the choice set if the family is installed locally.
+*/
 @import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
 $font-family-sans-serif: "Roboto", sans-serif !default;
-$presentation-font-size-root: 36px;
-
 $presentation-heading-font: "Roboto", sans-serif !default;
+
 $presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: 200;
+$presentation-heading-font-weight: lighter;
 //$presentation-heading-line-height: 2;
 //$presentation-block-margin: 28px;
+$presentation-font-size-root: 32px;
 
 // colors
 //$body-bg: #f0f1eb !default;
@@ -31,7 +48,8 @@ $selection-bg: #26351c !default;
 }
 
 .reveal p {
-  font-weight: 300;
+  // font-weight: 300;
+  font-weight: lighter;
   margin-top: 1.25em;
 }
 
@@ -43,13 +61,15 @@ $selection-bg: #26351c !default;
   .title {
     color: $body-color;
     font-size: 1.4em;
-    font-weight: 350;
+    // font-weight: 350;
+    font-weight: lighter;
   }
 
   .subtitle {
     color: $accent;
     font-style: italic;
     margin-top: 0em;
+    font-weight: lighter;
   }
 
   .institute,
@@ -80,20 +100,23 @@ $selection-bg: #26351c !default;
 
 
 .reveal h2 {
-  font-weight: 350;
+  // font-weight: 350;
+  font-weight: lighter;
   font-size: 1.4em;
 }
 
 .reveal h3 {
   color: $accent;
   font-style: italic;
-  font-weight: 350;
+  // font-weight: 350;
+  font-weight: lighter;
   font-size: 0.95em;
 }
 
 .reveal h4 {
   color: $accent2;
-  font-weight: 350;
+  // font-weight: 350;
+  font-weight: normal;
   margin-top: 1.25em;
 }
 
@@ -119,7 +142,8 @@ $selection-bg: #26351c !default;
 // Unordered lists
 
 .reveal ul {
-  font-weight: 300;
+  // font-weight: 300;
+  font-weight: lighter;
   padding-left: 16px;
 
   li::marker {
@@ -143,7 +167,8 @@ $selection-bg: #26351c !default;
 // Ordered lists
 
 .reveal ol {
-  font-weight: 300;
+  // font-weight: 300;
+  font-weight: lighter;
   padding-left: 16px;
 
   li::marker {
