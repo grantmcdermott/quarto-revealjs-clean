@@ -24,7 +24,8 @@ Note: This theme uses the Roboto font family, which it imports from Google
   preserving consistent font weights, you may also wish to remove "Roboto"
   from the choice set if the family is installed locally.
 */
-@import url(https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i);
+@import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap');
+
 $font-family-sans-serif: "Roboto", sans-serif !default;
 $presentation-heading-font: "Roboto", sans-serif !default;
 
@@ -238,6 +239,42 @@ $selection-bg: #26351c !default;
 .button::before {
   content: "▶";
   margin-right: 5px;
+}
+
+// tables
+
+.reveal table {
+  // height: auto; /* Adjust table width to fit content up to the available slide space */
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.8em;
+}
+
+.reveal table th,
+.reveal table td {
+  border: none; /* Remove internal row lines */
+  padding: .23em; /* Adjust padding as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  font-weight: lighter; /* Lighter font weight for main table text */
+}
+
+/* Adds a bottom border to the table header row for distinction */
+.reveal table thead th,
+.reveal .slides table tr:last-child td,
+.reveal .slides table {
+  border-bottom: 2px solid #D3D3D3; /* Dark grey color for the bottom border */
+}
+
+/* Make column headers bold */
+.reveal table thead th {
+  font-weight: bold;
+}
+
+/* Styling table captions */
+.reveal table caption {
+  color: #666666; /* Dark grey color for the caption */
+  font-variant: small-caps; /* Use small caps for the caption text */
 }
 
 // Special catch for etable environment to ensure these table images
