@@ -60,21 +60,21 @@ with more examples for integrating code, tables, figures, etc.
 ### A minimal and elegant presentation theme
 
 The Quarto reveal.js clean theme aims to be a minimal and elegant presention
-theme.
+theme. Here are some options to get you started:
 
-Install the theme.
+Add the theme to an existing project.
 
 ```{.bash}
 quarto install extension grantmcdermott/quarto-revealjs-clean
 ```
 
-Use this lean template.
+... or, create a new project using this slide deck as a lean template.
 
 ```{.bash}
 quarto use template grantmcdermott/quarto-revealjs-clean
 ```
 
-Use the longer demo template.
+... or, create a new project using the demo slide deck as a full template.
 
 ```{.bash}
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
