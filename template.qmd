@@ -57,9 +57,9 @@ with more examples for integrating code, tables, figures, etc.
 
 ## Summary {#sec-summary}
 
-### A minimal and elegant presentation theme
+### A minimalist and elegant presentation theme
 
-The Quarto reveal.js clean theme aims to be a minimal and elegant presention
+The Quarto reveal.js clean theme aims to be a minimalist and elegant presention
 theme. Here are some options to get you started:
 
 Add the theme to an existing project.
