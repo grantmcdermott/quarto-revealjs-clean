@@ -1,6 +1,6 @@
 # Quarto clean theme
 
-A minimal and elegant presentation theme for Quarto Reveal.js, inspired by Kyle's
+A minimalist and elegant presentation theme for Quarto Reveal.js, inspired by Kyle's
 [LaTex template](https://raw.githack.com/kylebutts/templates/master/latex-slides/slides.pdf).
 
 Click the screenshot below to be taken to a
