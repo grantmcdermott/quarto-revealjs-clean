@@ -37,3 +37,12 @@ quarto use template grantmcdermott/quarto-revealjs-clean
 ```bash
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ```
+
+## PDF (Typst) version
+
+The Quarto Reveal.js backend will render HTML slides. This is great for
+interactive content and dynamic responsiveness (e.g., automatically fitting
+whatever display device is being used). However, you may prefer to render your
+slides directly to PDF instead. If so, please take a look at Kazuharu
+Yanagimoto's very nice port of the **clean** theme, which leverages the Typst
+backend: https://github.com/kazuyanagimoto/quarto-clean-typst
