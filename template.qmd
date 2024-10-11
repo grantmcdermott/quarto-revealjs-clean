@@ -1,8 +1,10 @@
 ---
 title: A title
 subtitle: A subtitle
-format:
-  clean-revealjs: default
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 author:
   - name: Your Name
     orcid: 0000-0000-0000-0000
@@ -39,7 +41,8 @@ Special classes for emphasis
 
 Cross-references
 
-- `.button` class provides a Beamer-like button, e.g. [[Summary]{.button}](#sec-summary)
+- `.button` class provides a Beamer-like button, e.g.
+[[Summary]{.button}](#sec-summary)
 
 ## Want more?
 
@@ -48,30 +51,33 @@ Cross-references
 We've deliberarely kept this template lean, to get you up and running as fast as
 possible.
 
-We provide a separate demo template, with more examples for integrating
-code, tables, figures, etc.
+We provide a separate
+[demo template](https://github.com/grantmcdermott/quarto-revealjs-clean-demo),
+with more examples for integrating code, tables, figures, etc.
 
-  - See the demo slides here.
+  - See the live demo slides
+  [here](https://grantmcdermott.com/quarto-revealjs-clean-demo/template.html).
 
 ## Summary {#sec-summary}
 
-### A minimal and elegant presentation theme
+### A minimalist and elegant presentation theme
 
-The Quarto Revealjs clean theme is intended as a minimal and elegant presention theme.
+The Quarto reveal.js clean theme aims to be a minimalist and elegant presention
+theme. Here are some options to get you started:
 
-Install the theme.
+Add the theme to an existing project.
 
 ```{.bash}
 quarto install extension grantmcdermott/quarto-revealjs-clean
 ```
 
-Use this lean template.
+... or, create a new project using this slide deck as a lean template.
 
 ```{.bash}
 quarto use template grantmcdermott/quarto-revealjs-clean
 ```
 
-Use the longer demo template.
+... or, create a new project using the demo slide deck as a full template.
 
 ```{.bash}
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
