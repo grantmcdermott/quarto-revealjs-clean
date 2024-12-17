@@ -296,3 +296,34 @@ $selection-bg: #26351c !default;
   height: auto;
   object-fit: contain;
 }
+
+// Change the relative widths of `output-location: column`.  Usage:
+// ```{python}
+// #| echo: true
+// #| output-location: column
+// #| classes: columns3070
+
+.reveal .columns3070 > div.column:first-child {
+  width: 30%;
+}
+.reveal .columns3070 div.column:not(:first-child) {
+  width: 70%;
+}
+.reveal .columns7030 > div.column:first-child {
+  width: 70%;
+}
+.reveal .columns7030 div.column:not(:first-child) {
+  width: 30%;
+}
+.reveal .columns4060 > div.column:first-child {
+  width: 40%;
+}
+.reveal .columns4060 div.column:not(:first-child) {
+  width: 60%;
+}      
+.reveal .columns6040 > div.column:first-child {
+  width: 60%;
+}
+.reveal .columns6040 div.column:not(:first-child) {
+  width: 40%;
+}      
