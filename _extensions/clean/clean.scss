@@ -193,6 +193,22 @@ $selection-bg: #26351c !default;
   pointer-events: auto;
 }
 
+// Same for chalkboard buttons (with an offset)
+
+.reveal .slide-chalkboard-buttons {
+  position: fixed;
+  top: 12px;
+  right: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.reveal .slide-chalkboard-buttons > * {
+  pointer-events: auto;
+}
+
 // Logo to the bottom-left
 .slide-logo {
   display: block !important;
@@ -211,22 +227,6 @@ $selection-bg: #26351c !default;
   right: 10px !important;
   top: unset !important;
   color: #777777 !important;
-}
-
-// Same for chalkboard buttons (with an offset)
-
-.reveal .slide-chalkboard-buttons {
-  position: fixed;
-  top: 12px;
-  right: 24px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  pointer-events: none;
-}
-
-.reveal .slide-chalkboard-buttons > * {
-  pointer-events: auto;
 }
 
 // Beamer-style button link environment
