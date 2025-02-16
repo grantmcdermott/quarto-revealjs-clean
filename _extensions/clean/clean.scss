@@ -193,7 +193,6 @@ $selection-bg: #26351c !default;
   pointer-events: auto;
 }
 
-
 // Same for chalkboard buttons (with an offset)
 
 .reveal .slide-chalkboard-buttons {
@@ -208,6 +207,26 @@ $selection-bg: #26351c !default;
 
 .reveal .slide-chalkboard-buttons > * {
   pointer-events: auto;
+}
+
+// Logo to the bottom-left
+.slide-logo {
+  display: block !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 10px !important;
+  max-width: 150px; // Adjust if necessary
+  max-height: 50px;
+  width: auto !important;
+  color: $body-color !important;
+}
+
+// Also need to enforce slide numbers at bottom-right (if logo is present)
+.slide-number, .reveal.has-logo .slide-number {
+  bottom: 6px !important;
+  right: 10px !important;
+  top: unset !important;
+  color: #777777 !important;
 }
 
 // Beamer-style button link environment
