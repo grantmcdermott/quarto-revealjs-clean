@@ -297,12 +297,15 @@ $selection-bg: #26351c !default;
   object-fit: contain;
 }
 
-// Change the relative widths of `output-location: column`.  Usage:
+// Change the relative widths of `output-location: column`. 
+// See: https://github.com/grantmcdermott/quarto-revealjs-clean/pull/16
+// Example usage:
 // ```{python}
 // #| echo: true
 // #| output-location: column
 // #| classes: columns3070
-
+// <code>
+// ```
 .reveal .columns3070 > div.column:first-child {
   width: 30%;
 }
