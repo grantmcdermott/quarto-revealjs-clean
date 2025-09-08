@@ -10,4 +10,9 @@ contributes:
         side: left
       slide-number: true
       date-format: long
-
+      html-math-method:
+        method: mathjax
+        url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+      include-before-body: 
+        - text: |
+            <script src="_extensions/clean/mathjax-config.js"></script>
