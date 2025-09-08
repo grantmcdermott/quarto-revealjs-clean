@@ -1,10 +1,14 @@
 ---
 title: A title
 subtitle: A subtitle
-format: clean-revealjs
-html-math-method:
-  method: mathjax
-  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+format: 
+  clean-revealjs:
+    html-math-method:
+      method: mathjax
+      url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+    include-before-body: 
+      - text: |
+          <script src="_extensions/clean/mathjax-config.js"></script>
 author:
   - name: Your Name
     orcid: 0000-0000-0000-0000
