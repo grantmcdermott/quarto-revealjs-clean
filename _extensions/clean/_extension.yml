@@ -1,6 +1,6 @@
 title: clean
 author: Grant McDermott
-version: 1.3.0
+version: 1.4.0
 quarto-required: ">=1.3.0"
 contributes:
   formats:
@@ -10,4 +10,9 @@ contributes:
         side: left
       slide-number: true
       date-format: long
-
+      html-math-method:
+        method: mathjax
+        url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+      include-before-body: 
+        - text: |
+            <script src="_extensions/clean/mathjax-config.js"></script>
