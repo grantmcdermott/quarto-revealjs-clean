@@ -15,4 +15,4 @@ contributes:
         url: "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
       include-before-body: 
         - text: |
-            <script src="_extensions/clean/mathjax-config.js"></script>
+            <script src="_extensions/grantmcdermott/clean/mathjax-config.js"></script>
