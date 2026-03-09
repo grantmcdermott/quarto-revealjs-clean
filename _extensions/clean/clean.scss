@@ -146,6 +146,7 @@ $selection-bg: #26351c !default;
   // font-weight: 300;
   font-weight: lighter;
   padding-left: 16px;
+  list-style-type: disc;
 
   li::marker {
     color: mix($accent, white, 70%);
@@ -153,9 +154,13 @@ $selection-bg: #26351c !default;
 }
 
 .reveal ul ul {
-  list-style: none;
+  list-style: none !important;
 
-  li:before {
+  li::marker {
+    content: none;
+  }
+
+  li::before {
     content: $right-arrow;
     color: mix($accent, white, 60%);
     display: inline-block;
