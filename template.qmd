@@ -1,10 +1,7 @@
 ---
 title: A title
 subtitle: A subtitle
-format:
-  clean-revealjs:
-    title-logo: logo.svg
-    logo: slide-logo.png
+format: clean-revealjs
 author:
   - name: Your Name
     orcid: 0000-0000-0000-0000
