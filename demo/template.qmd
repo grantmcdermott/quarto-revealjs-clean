@@ -54,7 +54,7 @@ You'll need to install some software if you'd like to render the demo "as-is".
 ### R packages
 
 ```{.r}
-install.packages(c("modelsummary", "fixest", "pdftools", "tinytex", "threejs"))
+install.packages(c("modelsummary", "fixest", "ggplot2", "pdftools", "tinytex", "dygraphs"))
 ```
 ### TinyTex
 
@@ -359,41 +359,19 @@ Ideally, your figure will be the same aspect ratio as the screen that you're pre
 
 ## {background-image="img/kanagawa169.jpg" background-size="100%"}
 
-## Interactive plots
+## Interactive elements
 
 ```{r}
-#| out-width: 75%
+library(dygraphs)
 
-library(threejs)
-
-# Approximate locations as factors
-flights = flights()
-dest = factor(sprintf("%.2f:%.2f", flights[,3], flights[,4]))
-
-# A table of destination frequencies
-freq = sort(table(dest), decreasing=TRUE)
-
-# The most frequent destinations in these data
-frequent_destinations = names(freq)[1:10]
-
-# Subset the flight data by destination frequency
-idx = dest %in% frequent_destinations
-frequent_flights = flights[idx, ]
-
-# Lat/long and counts of frequent flights
-ll = unique(frequent_flights[, 3:4])
-
-# Plot frequent destinations as bars, and the flights to and from
-# them as arcs. Adjust arc width and color by frequency.
-globejs(lat=ll[, 1], long=ll[, 2], arcs=frequent_flights,
-        # bodycolor="#aaaaff", arcsHeight=0.3, arcsLwd=2,
-        bodycolor="#fff", arcsHeight=0.3, arcsLwd=2,
-        arcsColor="#ffff00", arcsOpacity=0.15,
-        atmosphere=TRUE, color="#fff", pointsize=0.5)
+deaths = cbind(Male = mdeaths, Female = fdeaths)
+dygraph(deaths, ylab = "Monthly deaths", height = 380, width = "100%") |>
+  dyOptions(colors = c("#107895", "#9a2515"), strokeWidth = 2) |>
+  dyRangeSelector(height = 30)
 ```
 
-_Note: Simple flight data example using `threejs`. There are many interactive
-plotting options beyond this.
+_Note: UK lung disease deaths using `dygraphs`; hover or tap for values, drag
+the range selector to zoom. There are many interactive options beyond this.
 (More [details](https://quarto.org/docs/interactive/).)_
 
 # Other {background-color="#40666e"}

@@ -54,7 +54,7 @@ jobs:
             any::ggplot2
             any::modelsummary
             any::tinytable
-            any::threejs
+            any::dygraphs
             any::pdftools
             any::tinytex
       # fixest::etable renders its table via LaTeX
