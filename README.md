@@ -4,9 +4,9 @@ A minimalist and elegant presentation theme for Quarto Reveal.js, inspired by Ky
 [LaTex template](https://raw.githack.com/kylebutts/templates/master/latex-slides/slides.pdf).
 
 Click the screenshot below to be taken to a
-[live demo](https://grantmcdermott.com/quarto-revealjs-clean/template.html).
+[live demo](https://grantmcdermott.com/quarto-revealjs-clean/demo.html).
 
-[![](clean-title.png "live demo")](https://grantmcdermott.com/quarto-revealjs-clean/template.html)
+[![](clean-title.png "live demo")](https://grantmcdermott.com/quarto-revealjs-clean/demo.html)
 
 ## Use
 
