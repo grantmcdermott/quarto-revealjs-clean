@@ -1,0 +1,73 @@
+name: Demo
+
+# Syncs the extension into demo/ (so `quarto use template .../demo` ships the
+# current theme), renders the demo, and deploys it to GitHub Pages.
+on:
+  push:
+    branches: main
+    paths:
+      - "_extensions/**"
+      - "demo/**"
+      - ".github/workflows/demo.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}template.html
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sync extension
+        run: |
+          rm -rf demo/_extensions/clean
+          cp -r _extensions/clean demo/_extensions/
+          if [ -n "$(git status --porcelain demo/_extensions)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+            git add demo/_extensions
+            git commit -m "chore: sync demo extension"
+            git push
+          fi
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::knitr
+            any::rmarkdown
+            any::fixest
+            any::modelsummary
+            any::tinytable
+            any::threejs
+            any::pdftools
+            any::tinytex
+      # fixest::etable renders its table via LaTeX
+      - uses: r-lib/actions/setup-tinytex@v2
+
+      - name: Render
+        run: |
+          quarto render demo/template.qmd
+          mkdir _site
+          cp demo/template.html _site/
+          echo '<meta http-equiv="refresh" content="0; url=template.html">' > _site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

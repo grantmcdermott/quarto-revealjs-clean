@@ -1,0 +1,462 @@
+---
+title: Quarto reveal.js clean
+subtitle: A minimalist and elegant presentation theme
+format:
+  clean-revealjs:
+    self-contained: true
+author:
+  - name: Grant McDermott
+    orcid: 0000-0001-7883-8573
+    email: gmcd@amazon.com
+    affiliations: Amazon.com
+  - name: Kyle Butts
+    orcid: 0000-0002-9048-8059
+    email: kbutts@uark.edu
+    affiliations: U of Arkansas
+date: last-modified
+bibliography: refs.bib
+---
+
+## Example slide
+
+### This is a subtitle
+
+Before we dive a bit deeper, here is a simple example of the
+[clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean)
+in action. 
+
+- No pictures or anything fancy. Just text for the moment.
+
+Next, we'll take a brief tour of some theme components.
+
+- We'll use the same basic
+structure as the
+[original LaTeX slides](https://raw.githack.com/kylebutts/templates/master/latex-slides/auxiliary/slides.pdf).
+- Note that the [_full suite_](https://quarto.org/docs/presentations/revealjs/)
+of Reveal.js features are available for this Quarto implementation,
+even if we don't cover everything here.
+
+
+## Before you proceed...
+
+### Requirements for the coding examples in this demo
+
+The [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) is
+language agnostic. Use it with R, Python, Julia, etc. Or none of the above.
+
+However, this demo uses R code to highlight advanced theme features.
+You'll need to install some software if you'd like to render the demo "as-is".
+
+:::{.callout-warning}
+
+## Required software (this demo only)
+
+### R packages
+
+```{.r}
+install.packages(c("modelsummary", "fixest", "pdftools", "tinytex", "threejs"))
+```
+### TinyTex
+
+```{.bash}
+quarto install tinytex
+```
+Note: While the "clean" extension renders to HTML format, this demo includes an example where a LaTeX table can be embedded as an image, which requires [TinyTex](https://quarto.org/docs/output-formats/pdf-engine.html).
+
+:::
+
+
+# Components {background-color="#40666e"}
+
+## Components
+
+### Ordered and Unordered Lists
+
+Here we have an unordered list.
+
+- first item
+    - sub-item
+- second item
+
+And next we have an ordered one.
+
+1. first item
+    i) sub-item
+2. second item
+
+## Components
+
+### Alerts & Cross-refs {#sec-crossref}
+
+To emphasize specific words or text, you can:
+
+- Use the default `.alert` class, e.g. [important note]{.alert}.
+- Use the `.fg` class for custom colour, e.g. [important note]{.fg style="--col: #e64173"}.
+- Use the `.bg` class for custom background, e.g. [important note]{.bg style="--col: #e64173"}.
+
+To cross-reference, you have several options, for example:
+
+- Beamer-like `.button` class provided by this theme, e.g. [[Appendix]{.button}](#sec-appendix)
+- Quarto's native cross-ref syntax, e.g., "See @sec-appendix."
+
+## Components
+
+### Citations
+
+Citations follow the standard
+[Quarto format](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations)
+and be sourced from BibLaTex, BibTeX, or CLS files. For example:
+
+ - [Topic 1:]{.alert} Spatial Frictions [@Fajgelbaum_Morales_Serrato_Zidar_2018; @Hsieh_Moretti_2019; @Moretti_2011]
+
+- [Topic 2:]{.alert} Blah [@Suárez_Serrato_Zidar_2016]
+
+## Components
+
+### Mathematics
+
+Use inline ($\alpha$, $\pi$) or display math as needed:
+
+$$
+P(E) = {n \choose k} p^k (2-p)^{n-k} \int^\infty_0 x dx
+$$
+
+
+::::{.fragment}
+P.S. Quarto provides dedicated
+[math environments](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs)
+for theorems, lemmas, etc. But for presentations, it's easier just to highlight via a
+[callout block](https://quarto.org/docs/authoring/callouts.html).
+
+:::{.callout-note}
+## Regression specification
+
+$$
+y_{it} = X_{it} \beta + \mu_i + \varepsilon_{it}
+$$
+:::
+::::
+
+
+## Components
+
+### Multicolumn I: Text only
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Column 1
+
+Here is a long sentence that will wrap onto the next line as it hits the column
+width, and continue this way until it stops.
+:::
+
+::: {.column width="50%"}
+#### Column 2
+
+Some other text in another column.
+
+A second paragraph.
+:::
+
+::::
+
+Multicolumn support is very flexible and we can continue with a single full
+span column in the same slide.
+
+## Components
+
+### Multicolumn II: Text and figures
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/kanagawa.jpg)
+:::
+
+::: {.column width="50%"}
+
+- A point about the figure that is potentially important.
+- Another point about the figure that is also potentially important.
+:::
+
+::::
+
+Note that sub- and multi-panel figures are also natively supported by Quarto.
+See [here](https://quarto.org/docs/authoring/figures.html#subfigures).
+
+## Components
+
+### Multicolumn III: Code and output
+
+```{r}
+#| echo: true
+#| label: fig-pairs
+#| fig-cap: "Pairwise scatterplot" 
+#| fig-asp: 1
+#| output-location: column
+
+palette("Classic Tableau")
+
+par(
+  family = "HersheySans",
+  las = 1, pch = 19, cex = 1.5
+)
+
+pairs(
+  iris[,1:4],
+  col=iris$Species
+)
+```
+
+# Tables {background-color="#40666e"}
+
+## Markdown tables
+
+### Default table styling
+
+The `clean` theme rolls its own minimalist aesthetic for tables. This should interface directly with Quarto's excellent
+[table support](https://quarto.org/docs/authoring/tables.html).
+
+:::: {.columns}
+::: {.column width="55%"}
+
+```md
+| fruit  | price  |
+|--------|-------:|
+| apple  | 2.05   |
+| pear   | 1.37   |
+| orange | 3.09   |
+
+: Fruit prices {tbl-colwidths="[75,25]"}
+```
+
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="40%"}
+| fruit  | price  |
+|--------|-------:|
+| apple  | 2.05   |
+| pear   | 1.37   |
+| orange | 3.09   |
+
+: Fruit prices {tbl-colwidths="[75,25]"}
+
+:::
+
+::::
+
+
+## Regression tables
+
+### Regression example
+
+These aesthetics should carry over to any computation-based tables too.
+
+Let's take a few slides to illustrate via a simple regression example:
+
+```{r}
+#| echo: true
+
+library(fixest)
+
+mods = feols(
+  rating ~ complaints + privileges + learning + csw0(raises + critical),
+  data = attitude
+)
+
+dict = c("rating"     = "Overall Rating",
+         "complaints" = "Handling of Complaints",
+         "privileges" = "No Special Priviledges",
+         "learning"   = "Opportunity to Learn",
+         "raises"     = "Performance-Based Raises",
+         "critical"   = "Too Critical")
+```
+
+## Regression tables
+
+### modelsummary
+
+Regression table software should play nice with this theme out the
+gate. Here's a [modelsummary](https://modelsummary.com/)
+example.
+
+```{r}
+#| cache: true
+#| echo: true
+#| output-location: slide
+
+library(modelsummary)
+
+modelsummary(
+  setNames(mods, c("(1)", "(2)")),
+  coef_map = dict, stars = TRUE,
+  gof_map = NA
+  ) |>
+  # some optional stylistic tweaks
+  tinytable::group_tt(j = list("Dep. variable: Overall Rating" = 2:3)) |>
+  tinytable::style_tt(i = 1:2, j = 2:3, background = "pink")
+```
+
+(The table is displayed on the next slide.)
+
+## Regression tables
+
+### fixest::etable
+
+**Aside:** We estimated our models with [fixest](https://lrberge.github.io/fixest/), which bundles its own powerful `etable` function. While `etable` was designed for LaTeX output, it can be [incorporated](https://lrberge.github.io/fixest/articles/etable_new_features.html) into HTML Quarto too.^[You will need to install the `tinytex` & `pdftools` packages first.]
+
+- Set the `output: asis` R chunk option in your Quarto doc.
+- Set the `setFixest_etable(markdown = TRUE)` option.
+
+````
+```{{r}}
+#| output: asis
+
+setFixest_etable(markdown = TRUE, drop = "Constant")
+setFixest_dict(dict)
+
+etable(mods, highlight = .("se" = "complaints"))
+```
+````
+
+## Regression tables
+
+### fixest::etable (cont.)
+
+```{r}
+#| output: asis
+
+# etable (markdown = TRUE) fails on a fresh render if its image dir is missing
+dir.create("images/etable", recursive = TRUE, showWarnings = FALSE)
+
+setFixest_etable(markdown = TRUE, drop = "Constant")
+setFixest_dict(dict)
+
+etable(mods, highlight = .("se" = "complaints"), arraystretch = 1.5)
+```
+
+# Figures {background-color="#40666e"}
+
+## Figures
+### Automatic scaling
+
+We've already seen examples of code-generated plots and mulicolumn figures. But a reminder that figures will auto-scale with the available space.
+
+![](img/kanagawa.jpg)
+
+## Figures
+### Backround images
+
+You can use the `{.background-image}` container environment to completely fill
+the slide background with an image.
+
+Ideally, your figure will be the same aspect ratio as the screen that you're presenting on.
+
+- This can be a bit tricky because of the dynamic nature of reveal.js / HTML. But it's probably something close to 16:9.
+- Aspect ratio can also matter for a regular full-frame images (previous slide).
+
+## {background-image="img/kanagawa169.jpg" background-size="100%"}
+
+## Interactive plots
+
+```{r}
+#| out-width: 75%
+
+library(threejs)
+
+# Approximate locations as factors
+flights = flights()
+dest = factor(sprintf("%.2f:%.2f", flights[,3], flights[,4]))
+
+# A table of destination frequencies
+freq = sort(table(dest), decreasing=TRUE)
+
+# The most frequent destinations in these data
+frequent_destinations = names(freq)[1:10]
+
+# Subset the flight data by destination frequency
+idx = dest %in% frequent_destinations
+frequent_flights = flights[idx, ]
+
+# Lat/long and counts of frequent flights
+ll = unique(frequent_flights[, 3:4])
+
+# Plot frequent destinations as bars, and the flights to and from
+# them as arcs. Adjust arc width and color by frequency.
+globejs(lat=ll[, 1], long=ll[, 2], arcs=frequent_flights,
+        # bodycolor="#aaaaff", arcsHeight=0.3, arcsLwd=2,
+        bodycolor="#fff", arcsHeight=0.3, arcsLwd=2,
+        arcsColor="#ffff00", arcsOpacity=0.15,
+        atmosphere=TRUE, color="#fff", pointsize=0.5)
+```
+
+_Note: Simple flight data example using `threejs`. There are many interactive
+plotting options beyond this.
+(More [details](https://quarto.org/docs/interactive/).)_
+
+# Other {background-color="#40666e"}
+
+## Other
+
+### What else can the clean theme do?
+
+We have highlighted some theme-specific components in this demo.
+
+But please note that all of the standard
+[reveal.js functionality and plugins](https://quarto.org/docs/presentations/revealjs/presenting.html)
+are compatible with the clean theme. This includes:
+
+- [chalkboard](https://quarto.org/docs/presentations/revealjs/presenting.html#chalkboard) for annotating slides.
+- [multiplex](https://quarto.org/docs/presentations/revealjs/presenting.html#multiplex) for enabling audience navigation of your slides.
+- [pdf printing](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf) in case you don't have access to a web browser.
+- Etc.
+
+# Summary {background-color="#40666e"}
+
+## Summary
+
+### A minimalist and elegant presentation theme
+
+The Quarto reveal.js [clean theme](https://github.com/grantmcdermott/quarto-revealjs-clean) aims to
+be a minimalist and elegant presention theme. Here are some options to get you
+started.
+
+Add the theme to an existing project.
+
+```{.bash}
+quarto install extension grantmcdermott/quarto-revealjs-clean
+```
+
+... or, create a new project using our lean template.
+
+```{.bash}
+quarto use template grantmcdermott/quarto-revealjs-clean
+```
+
+... or, create a new project using these demo slides as a full template.
+
+```{.bash}
+quarto use template grantmcdermott/quarto-revealjs-clean-demo
+```
+
+
+
+## References
+
+::: {#refs}
+:::
+
+## Appendix {#sec-appendix}
+
+```{r}
+#| cache: true
+#| label: tbl-attsum
+#| tbl-cap: Summary of the base R `attitude` dataset
+
+library(modelsummary)
+datasummary_skim(attitude)
+```
+
+[[Back to main]{.button}](#sec-crossref)
