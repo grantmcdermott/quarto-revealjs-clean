@@ -1,4 +1,13 @@
 .DS_Store
-template.html
-template_files/
-mathjax-config.js
+/template.html
+/template_files/
+/mathjax-config.js
+
+# Demo render outputs (built and deployed by CI)
+/demo/template.html
+/demo/template_files/
+/demo/template_cache/
+/demo/tinytable_assets/
+/demo/images/
+/demo/mathjax-config.js
+/_site/
