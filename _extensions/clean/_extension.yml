@@ -6,6 +6,8 @@ contributes:
   formats:
     revealjs:
       theme: [default, clean.scss]
+      filters:
+        - title-logo.lua
       menu:
         side: left
       slide-number: true

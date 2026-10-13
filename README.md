@@ -38,6 +38,29 @@ quarto use template grantmcdermott/quarto-revealjs-clean
 quarto use template grantmcdermott/quarto-revealjs-clean-demo
 ```
 
+## Title slide logo
+
+Add a large logo to the top-right corner of the title slide with `title-logo`.
+This complements Reveal.js's built-in `logo` option (small, bottom-left, all
+slides), which is hidden on the title slide when `title-logo` is set.
+
+```yaml
+format:
+  clean-revealjs:
+    title-logo: my-logo.svg
+```
+
+The logo is scaled to fit a 250×110px box by default. To change this, set
+the `--title-logo-width` and `--title-logo-height` CSS variables, e.g.
+
+```yaml
+format:
+  clean-revealjs:
+    title-logo: my-logo.svg
+    include-in-header:
+      text: "<style>:root { --title-logo-width: 180px; --title-logo-height: 72px; }</style>"
+```
+
 ## PDF (Typst) version
 
 The Quarto Reveal.js backend will render HTML slides. This is great for
