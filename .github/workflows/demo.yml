@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}template.html
+      url: ${{ steps.deploy.outputs.page_url }}demo.html
     steps:
       - uses: actions/checkout@v4
 
@@ -64,8 +64,11 @@ jobs:
         run: |
           quarto render demo/template.qmd
           mkdir _site
-          cp demo/template.html _site/
-          echo '<meta http-equiv="refresh" content="0; url=template.html">' > _site/index.html
+          cp demo/template.html _site/demo.html
+          # Redirect the root and the old template.html URL (keeping any #/slide)
+          r='<script>location.replace("demo.html"+location.hash)</script><meta http-equiv="refresh" content="0; url=demo.html">'
+          echo "$r" > _site/index.html
+          echo "$r" > _site/template.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
