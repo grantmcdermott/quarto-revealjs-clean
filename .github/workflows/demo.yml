@@ -51,6 +51,7 @@ jobs:
             any::knitr
             any::rmarkdown
             any::fixest
+            any::ggplot2
             any::modelsummary
             any::tinytable
             any::threejs
