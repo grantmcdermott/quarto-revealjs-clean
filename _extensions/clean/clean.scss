@@ -152,7 +152,8 @@ $selection-bg: #26351c !default;
   }
 }
 
-.reveal ul ul {
+.reveal ul ul,
+.reveal ul ul ul {
   list-style: none;
 
   li:before {
